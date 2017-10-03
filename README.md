@@ -11,3 +11,5 @@ History:
 
 MLP, 1 and 2 layer
 CNN, LeNet 5
+Word2Vec(SKIP-GRAM, CBOW)
+LSTM (basic, merged matrix)
