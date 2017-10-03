@@ -25,7 +25,7 @@ input_dim = 784
 hid1_dim = 128
 output_dim = 10
 
-num_batches = 100
+batch_size = 100
 num_steps = 1001
 
 graph = tf.Graph()
@@ -64,7 +64,7 @@ with tf.Session(graph=graph) as session:
     print("Initialized")
 
     for step in range(num_steps):
-        batch = mnist.train.next_batch(num_batches)
+        batch = mnist.train.next_batch(batch_size)
         feed_dict = {x: batch[0], y:batch[1]}
         _, l, train_pred = session.run([optimizer, loss, pred], feed_dict=feed_dict)
 
