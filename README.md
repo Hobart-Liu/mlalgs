@@ -6,6 +6,7 @@
 
 To-Do-List:
 1) try perceptron on MNIST database
+2) perceptron 的动态图示
 
 
 
