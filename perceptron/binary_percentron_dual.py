@@ -17,7 +17,7 @@ class BinaryPercentron_Dual(object):
 
     def fit(self, x, y, lr = 0.1, max_iter=500, disp=False):
         """
-        李航的统计学习方法， 第二章，感知机的原始形式
+        李航的统计学习方法， 第二章，感知机的对偶形式
 
         :param x: numpy array (number, vectors)
         :param y: numpy array (number, 1)
@@ -52,7 +52,7 @@ class BinaryPercentron_Dual(object):
                 #     f = f + sum(w[j] * y[j] * G[j, i])
                 # f = y[i] * (f + b)
 
-                # 简化为矩阵运算
+                # 简化为向量运算
                 f = y[i] * (sum(w * y.T[0] * G[:, i])+b)
 
                 if f <= 0:
