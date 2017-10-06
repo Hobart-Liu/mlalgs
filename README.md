@@ -7,10 +7,15 @@ Target:
 To-Do-List:
 - try perceptron on MNIST database
 - perceptron 的动态图示
+- KNN search
 
 
 
 History:
+
+2017/10/5
+
+- KNN (distance and kdtree)
 
 2017/10/4
 
