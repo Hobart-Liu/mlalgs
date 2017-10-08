@@ -7,11 +7,15 @@ Target:
 To-Do-List:
 - try perceptron on MNIST database
 - perceptron 的动态图示
-- KNN search
+- KNN search (k nearest search)
 
 
 
 History:
+
+2017/10/8
+
+- KNN search (cloest point)
 
 2017/10/5
 
@@ -25,5 +29,5 @@ History:
 
 - MLP, 1 and 2 layer
 - CNN, LeNet 5
-- Word2Vec(SKIP-GRAM, CBOW)
+- Word2Vec(skip-gram, CBOW)
 - LSTM (basic, merged matrix)

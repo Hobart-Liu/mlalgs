@@ -47,6 +47,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def print_tree(tree, depth):
+    if tree is None:
+        print("\t"*depth, "None")
+        return
+    print("\t"*depth, tree.point)
+    print_tree(tree.left_child, depth+1)
+    print_tree(tree.right_child, depth+1)
+
 def generate_point_list(n, min_val, max_val):
     return [[randint(min_val, max_val), randint(min_val, max_val)] for _ in range(n)]
 
@@ -54,9 +62,8 @@ n = 10
 min_val = 0
 max_val = 20
 x_list = generate_point_list(n, min_val, max_val)
-print(np.array(x_list))
-
 tree = kdtree(x_list, 0)
+print_tree(tree, 0)
 
 line_width = [4., 3.5, 3., 2.5, 2., 1.5, 1., .5, 0.3]
 
