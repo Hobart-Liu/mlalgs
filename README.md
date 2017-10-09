@@ -8,14 +8,18 @@ To-Do-List:
 - try perceptron on MNIST database
 - perceptron 的动态图示
 - KNN search (k nearest search)
-
+- Naive Bayes with Guassian
 
 
 History:
 
+2017/10/9
+
+Naive Bayes (simple classify)
+
 2017/10/8
 
-- KNN search (cloest point)
+- KNN search (the cloest point)
 
 2017/10/5
 
