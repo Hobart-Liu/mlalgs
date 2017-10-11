@@ -18,6 +18,7 @@ History:
 
 - Decision Tree (ID3 & C4.5 build Tree)
 - NN with pure python implementation
+- LSTM ipynb
 
 2017/10/9
 
