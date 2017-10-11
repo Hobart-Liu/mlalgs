@@ -16,11 +16,12 @@ History:
 
 2017/10/11
 
-Decision Tree (ID3 & C4.5 build Tree)
+- Decision Tree (ID3 & C4.5 build Tree)
+- NN with pure python implementation
 
 2017/10/9
 
-Naive Bayes (simple classify)
+- Naive Bayes (simple classify)
 
 2017/10/8
 
