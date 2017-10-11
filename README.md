@@ -5,13 +5,18 @@ Target:
 - 观察算法在MNIST等数据集上的表现
 
 To-Do-List:
-- try perceptron on MNIST database
+- try perceptron, KNN, NB, DT on MNIST database
 - perceptron 的动态图示
 - KNN search (k nearest search)
 - Naive Bayes with Guassian
+- Decision Tree 处理连续值
 
 
 History:
+
+2017/10/11
+
+Decision Tree (ID3 & C4.5 build Tree)
 
 2017/10/9
 
