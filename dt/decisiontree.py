@@ -1,14 +1,10 @@
 import pandas as pd
 import numpy as np
-from collections import defaultdict, Counter
+from collections import Counter
 
 """
 限制：只针对离散值。
-Open Question: 连续值如何处理
-连续值一个可能的方法是将连续值排序后分成N个类，取类间的中位数为候选的划分点，
-考察那个点带来的信息增益率最大（我们知道分类的情况， 反复调用info_gain_ratio）。
-1）目前还没想到N如何确定
-2）如果数据量很大，每个小区间的数据量都很大的话，是取中位数还是和概率密度有关，不确定。
+连续值参见decisiontree2.py
 
 """
 
