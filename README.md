@@ -12,7 +12,7 @@ To-Do-List:
 
 
 Note:
-CART 计算复杂度大致为O(row*col*row), 如果进行剪枝，计算量太大。暂时放弃剪枝的尝试。RF可能更实际。
+- CART 计算复杂度大致为O(row x col xrow), 如果进行剪枝，计算量太大。暂时放弃剪枝的尝试。RF可能更实际。
 
 History:
 
