@@ -9,16 +9,18 @@ To-Do-List:
 - perceptron 的动态图示
 - KNN search (k nearest search)
 - Naive Bayes with Guassian
+- Decision Tree pruning, O(row x row x col)
 
-
-Note:
-- CART 计算复杂度大致为O(row x col xrow), 如果进行剪枝，计算量太大。暂时放弃剪枝的尝试。RF可能更实际。
 
 History:
 
+2017/10/18:
+
+- Linear SVM (hard margin)
+
 2017/10/15
 
-Decision Tree (CART build Tree, gini_impurity)
+- Decision Tree (CART build Tree, gini_impurity)
 
 2017/10/11
 
