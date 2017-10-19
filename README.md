@@ -10,43 +10,20 @@ To-Do-List:
 - KNN search (k nearest search)
 - Naive Bayes with Guassian
 - Decision Tree pruning, O(row x row x col)
+- SVM 2维图像的分割线
 
 
-History:
+Achieved:
 
-2017/10/18:
-
-- Linear SVM (hard margin)
-
-2017/10/15
-
-- Decision Tree (CART build Tree, gini_impurity)
-
-2017/10/11
-
-- Decision Tree (ID3 & C4.5 build Tree, entropy_impurity)
+- SVM (hard margin, soft margin, kernels)
+- Decision Tree (ID3, C4.5 & CART, build Tree, entropy_impurity, gini_impurity)
 - NN with pure python implementation
-- LSTM ipynb
-
-2017/10/9
-
+- LSTM (batch, time seq, multi-dimension etc.)
 - Naive Bayes (simple classify)
-
-2017/10/8
-
-- KNN search (the cloest point)
-
-2017/10/5
-
-- KNN (distance and kdtree)
-
-2017/10/4
-
+- KNN search (distance, kdtree & the cloest point)
 - Perceptron 原始形式, 对偶形式 (李航，统计学习方法）
-
-2017/10/3
-
 - MLP, 1 and 2 layer
 - CNN, LeNet 5
 - Word2Vec(skip-gram, CBOW)
 - LSTM (basic, merged matrix)
+
