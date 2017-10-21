@@ -4,7 +4,7 @@ from collections import Counter
 
 """
 限制：只针对离散值。
-连续值参见decisiontree2.py
+连续值参见decisiontree2.py and decisiontree3.py
 
 """
 

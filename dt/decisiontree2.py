@@ -1,11 +1,13 @@
-from os.path import join, expanduser
-import pandas as pd
-import numpy as np
 
 """
 CART approach
 训练数据是连续值
 """
+
+from os.path import join, expanduser
+import pandas as pd
+import numpy as np
+
 
 
 # load a csv file

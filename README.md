@@ -13,12 +13,13 @@ To-Do-List:
 - SVM 2维图像的分割线
 
 
-Achieved:
+Archived:
 
+- AdaBoost
 - SVM (hard margin, soft margin, kernels)
 - Decision Tree (ID3, C4.5 & CART, build Tree, entropy_impurity, gini_impurity)
 - NN with pure python implementation
-- LSTM (batch, time seq, multi-dimension etc.)
+- LSTM (batch, time seq, multi-dimension, stateful & variable length.)
 - Naive Bayes (simple classify)
 - KNN search (distance, kdtree & the cloest point)
 - Perceptron 原始形式, 对偶形式 (李航，统计学习方法）
