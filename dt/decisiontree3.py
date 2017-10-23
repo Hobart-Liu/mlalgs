@@ -15,14 +15,14 @@ def mse(d, m):
     return sum([(x-m)**2 for x in d])
 
 class Node(object):
-    def __init__(self, col, split_point, result, left_branch, right_branch, sample):
+    def __init__(self, col, split_point, result, left_branch, right_branch, sample, data):
         self.col = col # column name of criteria being tested
         self.split_point = split_point  # value of criteria
         self.results = result # endpoint otherwise none
         self.left_branch = left_branch # if value(col) < split_point
         self.right_branch = right_branch # otherwise
         self.sample = sample
-
+        self.data = data
 
 def find_best_split(df, features, label_col):
 
@@ -31,6 +31,7 @@ def find_best_split(df, features, label_col):
     the_val = None
     the_left = None
     the_right = None
+
 
     for feat in features:
         for val in df[feat]:
@@ -56,11 +57,11 @@ def build_tree_CART(df, features, label_col, max_depth, min_size, depth):
     Ck = Counter(df[label_col])
     if len(Ck.keys()) == 1:
         return Node(col=None, split_point=None, result=list(Ck.keys())[0],
-                    left_branch=None, right_branch=None, sample=len(df))
+                    left_branch=None, right_branch=None, sample=len(df), data = df[label_col])
 
     if len(features) == 0 or depth > max_depth or len(df) <= min_size:
         return Node(col=None, split_point=None, result=df[label_col].mean(),
-                    left_branch=None, right_branch=None, sample=len(df))
+                    left_branch=None, right_branch=None, sample=len(df), data = df[label_col])
 
     """
        Age  LikesGardening  PlaysVideoGames  LikesHats
@@ -69,13 +70,13 @@ def build_tree_CART(df, features, label_col, max_depth, min_size, depth):
     """
     if len(df_l) == 0 or len(df_r) == 0:
         return Node(col=None, split_point=None, result=df[label_col].mean(),
-                    left_branch=None, right_branch=None, sample=len(df))
+                    left_branch=None, right_branch=None, sample=len(df), data=df[label_col])
 
     features = features - set([feat])
     return Node(col=feat, split_point=split_point, result=None,
                 left_branch=build_tree_CART(df_l, features, label_col, max_depth, min_size, depth + 1),
                 right_branch=build_tree_CART(df_r, features, label_col, max_depth, min_size, depth + 1),
-                sample=len(df)
+                sample=len(df), data = df[label_col]
                 )
 
 
@@ -84,12 +85,12 @@ def build_tree_CART(df, features, label_col, max_depth, min_size, depth):
 def printTree(tree, depth=0):
     if tree is None: return
     if tree.col is not None:
-        print("\t"*depth, "{0} < {1}, sample={2}".format(tree.col, tree.split_point, tree.sample))
+        print("\t"*depth, "{0} < {1}, sample={2} data=".format(tree.col, tree.split_point, tree.sample), tree.data.tolist())
     if tree.results is None:
         printTree(tree.left_branch, depth+1)
         printTree(tree.right_branch, depth+1)
     else:
-        print("\t"*depth, "Class is", tree.results)
+        print("\t"*depth, "Class is", tree.results, "data=", tree.data.tolist())
 
 if __name__ == "__main__":
     
@@ -111,5 +112,5 @@ if __name__ == "__main__":
     print(df)
 
     tree = build_tree_CART(df, set(['LikesGardening', 'PlaysVideoGames', 'LikesHats']), 'Age',
-                           np.inf, 3, 0)
+                           np.inf, 2, 0)
     printTree(tree, 0)

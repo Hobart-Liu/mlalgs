@@ -14,7 +14,7 @@ To-Do-List:
 
 
 Archived:
-
+- Random Forest
 - AdaBoost
 - SVM (hard margin, soft margin, kernels)
 - Decision Tree (ID3, C4.5 & CART, build Tree, entropy_impurity, gini_impurity)
