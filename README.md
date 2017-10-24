@@ -11,6 +11,7 @@ To-Do-List:
 - Naive Bayes with Guassian
 - Decision Tree pruning, O(row x row x col)
 - SVM 2维图像的分割线
+- Random Forest 组合sklearn DecisionTreeClassifier 性能上比不过一个单一数，同时，sklearn的RandomForestClassifier显示可以更进一步提升准确率。
 
 
 Archived:
