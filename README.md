@@ -15,6 +15,7 @@ To-Do-List:
 
 
 Archived:
+- EM
 - Random Forest
 - AdaBoost
 - SVM (hard margin, soft margin, kernels)
