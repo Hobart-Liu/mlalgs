@@ -1,6 +1,7 @@
 """
 My first EM practice.
 It works sometime, but it is not stable. It counters dived by zero very often.
+I suppose, in M step, when we update mu, the mu:s happened to be the same as one of the x:s
 
 """
 
