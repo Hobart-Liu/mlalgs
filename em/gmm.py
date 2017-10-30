@@ -4,6 +4,13 @@ from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 
 
+# very good reference:
+# http://cs229.stanford.edu/section/gaussians.pdf
+# http://cs229.stanford.edu/notes/cs229-notes7b.pdf
+# https://gist.github.com/bistaumanga/6023716
+
+
+
 def fit_em(x, k, max_iters=200):
     """
 
