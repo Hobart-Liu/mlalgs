@@ -15,8 +15,8 @@ To-Do-List:
 
 Archived:
 - EM
-- Random Forest
-- AdaBoost
+- Bagging(Random Forest)
+- Boost (AdaBoost, Gradient Boost)
 - SVM (hard margin, soft margin, kernels)
 - Decision Tree (ID3, C4.5 & CART, build Tree, entropy_impurity, gini_impurity)
 - NN with pure python implementation
