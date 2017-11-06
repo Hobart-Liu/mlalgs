@@ -1,107 +1,112 @@
+"""
+Build CART stump, with one decision branch
+
+"""
+
+
 import numpy as np
-
-LESSTHAN = 0
-LARGERTHAN = 1
-disp = ['<=', ">"]
-
-class Stump:
-    """
-    Simple Stump
-    use > or <= as classifier
-    """
-    def __init__(self, X, Y, weight):
-        self.split = None
-        self.func = None
-        self.errors = None
-        self.err = None
-        besterr = np.inf
+import matplotlib.pyplot as plt
 
 
+def mse(d, m):
+    return sum([(x - m) ** 2 for x in d])
 
-        for x in X:
-            predict = [self.less_than(x_, x) for x_ in X]
-            errors = [p != y for p, y in zip(predict, Y)]
-            err = sum(weight*errors)
-            if err < besterr:
-                self.split = x
-                self.func = self.less_than
-                self.errors = errors
-                self.err = err
-                besterr = err
-                print("err = {}, {} {}".format(err, disp[0], x))
+class CARTStump(object):
+    def __init__(self):
+        self.split_point = None
+        self.feat = None
+        self.less_than_result = None  # <=
+        self.larger_than_result = None # >
 
-            predict = [self.larger_than(x_, x) for x_ in X]
-            errors = [p != y for p, y in zip(predict, Y)]
-            err = sum(weight*errors)
-            if err < besterr:
-                self.split = x
-                self.func = self.larger_than
-                self.errors = errors
-                self.err = err
-                besterr = err
-                print("err = {}, {} {}".format(err, disp[1], x))
+    # def get_y_hat(self, data, weight):
+    #     n = len(data)
+    #     return np.dot(weight.reshape(1,-1), data.reshape(-1, 1))/n
 
 
+    def fit(self, X, Y):
+        """
+        simple function to handle 2D training data
+        :param X: 2D dim
+        :param Y: 1D vector, label
+        :return:
+        """
+        m, n = X.shape
+        the_min = np.inf
 
-    def larger_than(self, x, y):
-        if x > y : return  1
-        else     : return -1
+        for feat in range(n):
+            data = X[:, feat]
+            for row in range(m-1):
+                split_point = X[row, feat]
+                sub1 = Y[data <= split_point]
+                sub2 = Y[data > split_point]
+                y_hat_1 = sub1.mean()
+                y_hat_2 = sub2.mean()
+                mean_sequre_error= mse(sub1, y_hat_1) + mse(sub2, y_hat_2)
+                if mean_sequre_error < the_min:
+                    the_min = mean_sequre_error
+                    self.split_point = split_point
+                    self.feat = feat
+                    self.less_than_result = y_hat_1
+                    self.larger_than_result = y_hat_2
 
-    def less_than(self, x, y):
-        if x <= y: return  1
-        else     : return -1
+    def predict(self, x):
+        if x[self.feat] <= self.split_point:
+            return self.less_than_result
+        else:
+            return self.larger_than_result
 
+class GradientBoost:
 
-    def pred(self, x):
-        return self.func(x, self.split)
+    def __init__(self, X, Y):
+        self.X = X
+        self.Y = Y
+        self.S = []
 
-class AdaBoost:
-
-    def __init__(self, dataset, label):
-        self.X = dataset # train dataset
-        self.Y = label # label
-        self.N = len(dataset) # len
-        self.W = np.ones(self.N)/self.N # weights
-        self.A = [] # alphas
-        self.S = [] # stumps
-
-    def fit(self, max_iter=10):
+    def fit(self, max_iter = 5):
         iter = 0
+        cost = []
+        residual = self.Y
         while iter < max_iter:
-            print("Iter, ",  iter, "=========")
-            stump = Stump(self.X, self.Y, self.W)
-            e = stump.err
-            a = np.log((1-e)/e) * 0.5
-            w = np.zeros(self.N)
-            for i, (wi, erri) in enumerate(zip(self.W, stump.errors)):
-                if erri: w[i] = wi * np.exp( a)
-                else   : w[i] = wi * np.exp(-a)
-            self.W = w / w.sum()
+            print("===== Iter", iter, end="")
+            stump = CARTStump()
+            stump.fit(self.X, residual)
+            new_r = np.array([r - stump.predict(x) for r, x in zip(residual, self.X)])
+            residual = new_r
+            cost.append(sum([r**2 for r in residual]))
+            print(cost[-1])
             self.S.append(stump)
-            self.A.append(a)
             iter += 1
+        return cost
 
-    def evaluate(self):
-        count = 0
-        for x, y in zip(self.X, self.Y):
-            hx = [a*s.pred(x) for a, s in zip(self.A, self.S)]
-            pred = np.sign(sum(hx))
-            if pred == y: count += 1
-            print("data x %+4d, label %+2d, predict %+2d" %(x, y,np.sign(sum(hx))))
-        print("accuracy", count/self.N*100.0)
+    def predict(self, x):
+        ret = 0.0
+        for s in self.S:
+            ret += s.predict(x)
+        return ret
+
+
 
 if __name__ == "__main__":
-    x = np.array([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0])
-    y = np.array([1, 1, 1,-1,-1,-1, 1, 1, 1,-1])
+    # x = np.array([1,2,3,4,5,6,7,8,9,10]).reshape(-1, 1)
+    # y = np.array([5.56, 5.70, 5.91, 6.40, 6.80, 7.05, 8.90, 8.70, 9.00, 9.05])
 
-    boost = AdaBoost(x, y)
-    boost.fit(3)
-    boost.evaluate()
+    x = np.linspace(-10, 10, 1000).reshape(-1, 1)
+    y = np.sin(x)
+    gb = GradientBoost(x, y)
+    cost = gb.fit(50)
+    pred = [gb.predict(x_) for x_ in x]
+    print(pred)
 
-    x = np.random.randint(-100, 100, 50)
-    y = np.random.choice([+1, -1], 50)
-    boost = AdaBoost(x, y)
-    boost.fit(20)
-    boost.evaluate()
+    fig=plt.figure()
+    ax1=fig.add_subplot(311)
+    ax1.plot(x, y)
+    ax2=fig.add_subplot(312)
+    ax2.plot(x, pred)
+
+    ax3=fig.add_subplot(313)
+    ax3.plot(cost)
+    plt.show()
+
+
 
 
