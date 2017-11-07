@@ -11,7 +11,8 @@ To-Do-List:
 - Naive Bayes with Guassian
 - Decision Tree pruning, O(row x row x col)
 - SVM 2维图像的分割线
-
+- gradient boost with different lost function
+- xgboost
 
 Archived:
 - EM
