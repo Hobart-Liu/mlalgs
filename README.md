@@ -13,8 +13,10 @@ To-Do-List:
 - SVM 2维图像的分割线
 - gradient boost with different lost function
 - xgboost
+- Baum-Welch, Viterbi
 
 Archived:
+- HMM
 - EM
 - Bagging(Random Forest)
 - Boost (AdaBoost, Gradient Boost)
