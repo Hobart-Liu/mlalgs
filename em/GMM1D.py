@@ -81,6 +81,16 @@ def fit_em(x, k, max_iter=200):
 
     return mu, sigma
 
+# common ploting function, not yet integrated
+# leave a copy here for furture improvement
+def draw(mus, covs, ax):
+    colors = ['#ebe4c2', '#00a7bd', '#452d0f', '#e41b17', '#6568a8',
+              '#0d1b4a', '#d9cfe3', '#88b7c5', '#a8a565', '#47574d']
+
+    for mu, cov, color in zip(mus.flatten(), covs.flatten(), colors[:len(mus)]):
+        x = np.linspace(mu - 4 * cov, mu + 4 * cov, 100)
+        prob = np.array([norm.pdf(x_, mu, cov) for x_ in x])
+        ax.plot(x, prob, color=color)
 
 # with open('data1.pickle', 'rb') as f:
 #     d = pickle.load(f)
