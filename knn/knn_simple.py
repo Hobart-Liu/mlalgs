@@ -151,8 +151,8 @@ point_list = [[50, 20], [20, 40], [80, 70], [10, 10], [45, 80], [70, 90], [90, 1
 pivot = [55, 80]
 
 tree = KDTree(point_list)
-# KDTree.print_tree(tree)
-# KDTree.plot_tree(tree, 0, 100, 0, 100)
+KDTree.print_tree(tree)
+KDTree.plot_tree(tree, 0, 100, 0, 100)
 print(tree.closest_point(pivot, KDTree.Euclidean))
 
 
